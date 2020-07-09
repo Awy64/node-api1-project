@@ -1,21 +1,32 @@
-import React, {useState, useEffect} from "react";
-import {axios as Axios} from "axios";
+import React, {useEffect} from "react";
+import User from "./User";
 
 
 
-const UserList = () => {
-  const [users, setUsers] = useState([]);
+const UserList = ({fetchUsers, users}) => {
+ 
+
+  // const fetchUsers = () => {
+  //   axios.get("http://localhost:5000/api/users/")
+  //   .then(res => setUsers(res.data))
+  //   .catch(err => console.log(err.message))
+  // }
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/api/users/")
-    .then(res => console.log(res))
-    .catch(err => console.log(err.message))
+    fetchUsers();
   }, [])
   
 
   return(
     <div>
-
+      {users.map((user, i) => {
+        return(
+        <div key={i}>
+        <User  user={user} fetchUsers={fetchUsers} />
+        </div>
+        )
+        
+      })}
     </div>
   )
 }
