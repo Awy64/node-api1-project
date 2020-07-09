@@ -6,13 +6,13 @@ const server = express();
 
 
 // data stores
-let users = [];
+let users = [{id: 'fakeID', name: "Adam Young", bio: "I love Videogames"}];
 //
 
 // Created json from text json
 server.use(express.json());
 const corsSettings = {
-  origin: false
+  origin: '*'
 }
 server.use(cors(corsSettings))
 //
